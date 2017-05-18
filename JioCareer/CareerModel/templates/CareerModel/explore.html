@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Explore</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+<style>
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+
+#h {
+    width: auto;
+    height: auto;
+    padding: 10px 40px;
+    background: #417690;
+    line-height: 40px;
+    color: #ffc;
+    overflow: hidden;
+}
+p.wrap{
+	width: 11em;
+	word-wrap: break-word;
+}
+p#color{
+	color: white;
+}
+</style>
+<script type="text/javascript">	
+	function checkboxlimit(checkgroup,limit) 
+	{	
+		var checkgroup = checkgroup,limit = limit;
+		for (var i=0; i<checkgroup.length; i++)
+		{
+	        	var checkedcount=0;
+	        	for (var i=0; i<checkgroup.length; i++)
+	            	checkedcount += (checkgroup[i].checked) ? 1 : 0;
+	        	if (checkedcount > limit)
+	        	{
+	            	this.checked = false;
+	            	// alert("You must Select 2 Entry");
+	            	return false;
+	        	}
+	        	else if(checkedcount <limit)
+	        	{
+	         		this.checked=false;
+	         		// alert("You must Select 2 Entry");
+	             	return false;
+	        	}
+	        	else
+	        	 	return true;
+		}
+	}
+	function checkInput()
+	{
+		var limit = 2;
+		return checkboxlimit(document.getElementsByName("role_list"),limit);
+	}
+	$('input.autocomplete').autocomplete({
+    data: {
+      "Apple": null,
+      "Microsoft": null,
+      "Google": 'http://placehold.it/250x250'
+    },
+    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+    onAutocomplete: function(val) {
+      // Callback function when value is autcompleted.
+    },
+    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+  });
+</script>
+</head>
+<body >
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" class="brand-logo blue-text hide-on-med-and-down">Jio Career</a>
+      <ul class="right ">
+        <li><a class="waves-effect waves-light btn" href='/user/profile'>My Profile</a></li>
+        <a class='dropdown-button btn' data-activates='dropdown1' data-beloworigin="true"><i class="large material-icons">perm_identity</i></a>
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="/user/profile">Profile</a></li>
+          <li class="divider"></li>
+          <li><a href="/user/logout">Sign Out</a></li>
+        </ul>
+      </ul>  
+    </div>
+  </nav>
+
+
+
+
+
+	<main>
+		<div >
+			<div id="h">
+				<div id="branding">
+					<h5>Explore the various roles at Jio
+					</h5>		
+				</div>	
+			</div>
+
+			<div class = "row section green accent-1">
+				<div class = "col s12 l6 m12">	
+						<form  action = "" method="post" class="navbar-form" role="search">
+							{% csrf_token %}
+							<div class="container">							
+							    <div class="input-field ">
+							      <input class="form-control autocomplete" placeholder="Search" name="name_query" type="text">
+							      <label for="name_query">Search</label>
+							    </div>
+							</div>
+						    <br>
+						    <div class="container" >
+							  	<select class="initialized" name = "family_pk">
+									<option selected disabled> Choose Job Family</option>
+									{% for family in family_list %}
+										<option value={{family.pk}} >{{ family.name }}</option>
+									{% endfor %}
+								</select>
+							  	
+							  	<div class="row">
+								 	<div class="input-group-btn" value="search" style="display: inline-block;">
+							       		<button class="btn btn-default" type="submit" value="Search"><i class="large material-icons" style="vertical-align: middle">search</i> Search</button>
+							      	</div>	
+							      	<div  class="input-group-btn" value="compare" style="display: inline-block;">
+										<button form="compare-form" class="btn btn-default" type="submit" value="Compare"><i class="large material-icons" style="vertical-align: middle">search</i> Compare</button>
+									</div>
+								</div>
+								
+							</div>
+
+							 
+						</form>
+				</div>
+		
+			</div>
+		</div>
+				<div class="row">
+					<form id="compare-form" action = "/career/compare" onsubmit= "return checkInput()" method = "post">
+					{% csrf_token %}
+					{% for role in role_list %}
+					 	<div class="col s12 m6 l3" align=center>
+					      	<br>
+					        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; width: 70%; border: 1px solid #EEE;">
+						          	<div class="container" style="height: 70px">
+						            	<p class="wrap">
+						            		<a class="modal-trigger" href="#role-{{ role.pk }}">
+											{{ role.name }}
+											</a>
+										</p>
+						          	</div>
+						          	<div class="z-depth-1 black row" style="padding-top: 1px; padding-left: 50px; padding-bottom: 20px;">
+						            	<p id="color" align="center">Exp. required: {{role.experience}}+</p>
+						          	</div>
+						          	<input type="checkbox" class="box" id="{{ role.pk }}" name = "role_list" value = "{{ role.pk }}"/>
+									<label for="{{ role.pk }}">{{ role.name }}</label>
+					        </div>
+					    </div>
+					    <div id="role-{{ role.pk }}" class="modal">
+								<div class="modal-content">
+									<div class="row valign-wrapper">
+											<div class="col left">
+												<h5 class="left-align">{{ role.name }}</h5>
+											</div>
+											<div class="col right">
+												<h6 class="right-align">Experience Required: {{ role.experience }}+ Years</h6>
+											</div>
+									</div>
+									<div class="row">
+										<table class = "striped bordered" >
+											<thead>
+												<tr>
+													<th> </th>
+													<th> </th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td> <strong>Qualifications</strong> </td>
+													<td>{{ role.qualification }}</td>
+												</tr>
+												<tr>
+													<td> <strong>Skills</strong> </td>
+													<td>{{ role.skills }}</td>
+												</tr>
+												<tr>
+													<td> <strong>Responsibilities</strong> </td>
+													<td>{{ role.responsibilities }}</td>
+												</tr>
+												<tr>
+													<td> <strong>Available Training</strong> </td>
+													<td>{{ role.training }}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+								</div>
+						</div>
+				    {% endfor %}
+					</form	>
+				</div>
+						
+		
+	</main>
+
+
+
+
+
+	<footer class="page-footer grey darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Jio Career</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright grey darken-3">
+      <div class="container">
+      <div class="row">
+      <div class="col s6">
+      Jio Careers 2016-17 | Reliance Jio Infocomm Ltd.
+      </div>
+      <div class="col s6">
+       All rights reserved | Privacy Policy | Legal Notice
+      </div>
+      </div>
+    </div>
+  </footer>
+ 
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/init.js"></script>
+   <script type="text/javascript">
+  	$(document).ready(function() {
+    	$('select').material_select();
+   	  	$('form').prop( "disabled", true );
+
+  	});
+  	$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+ #h {
+    width: auto;
+    height: auto;
+    padding: 10px 40px;
+    background: #417690;
+    line-height: 40px;
+    color: #ffc;
+}
+  </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>My Profile</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+ 
+<body >	
+	<nav class="white" role="navigation">
+    	<div class="nav-wrapper container">
+    			<a id="logo-container" class="brand-logo blue-text hide-on-med-and-down">Jio Career</a>
+	      		<ul class="right">
+	        	<li>
+	        		<a class="waves-effect waves-light btn" href='/career/explore'>Explore Roles</a>
+	        	</li>
+	        	<li><a class='dropdown-button btn' data-activates='dropdown1' data-beloworigin = "true"><i class="large material-icons">perm_identity</i></a>
+
+		          	<ul id='dropdown1' class='dropdown-content'>
+		            	<li><a href="/user/profile">Profile</a></li>
+		            	<li class="divider"></li>
+		            	<li><a href="/user/logout">Sign Out</a></li>
+		        	</ul>
+		  
+	       		</li>
+	      	</ul>
+  		</div>
+  	</nav>
+  	<main>
+		<div class = "row section green accent-1">
+			<div class="container">
+				<div class = "col s6">
+						<h5>{{ employee.user.get_full_name }} </h5>
+						<h6>{{ employee.role }} </h6>
+						<br>
+				</div>
+				<div class = "col s3">
+				</div>
+			</div>
+		</div>
+		<div class = "row section">
+			<div class = "container">
+				<table class = "striped bordered" >
+					<thead>
+						<tr>
+							<th> </th>
+							<th> </th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td> <strong>Qualifications</strong> </td>
+							<td>{{ employee.qualifications }}</td>
+						</tr>
+						<tr>
+							<td> <strong>Skills</strong> </td>
+							<td>{{ employee.skills }}</td>
+						</tr>
+						<tr>
+							<td> <strong>Competencies</strong> </td>
+							<td>{{ employee.competencies }}</td>
+						</tr>
+						<tr>
+							<td> <strong>Achievements</strong> </td>
+							<td>{{ employee.achievements }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class = "row section green accent-1">
+			<div class = "container">
+				<strong>Projected Career Path</strong>
+				<div class = "row section">
+					<ul>
+					{% for role in role_list %}
+						<div class="row" >
+							<li>
+								<a class="modal-trigger waves-effect btn-floating"  href="#role-{{ role.pk }}"><i class="material-icons tiny" >star</i></a>
+								<span> {{ role.name }} </span>
+							</li>
+						</div>
+						<div id="role-{{ role.pk }}" class="modal">
+								<div class="modal-content">
+									<div class="row" id="h">
+										<div class="valign-wrapper">
+											<div class="col left">
+												<h5 class="left-align">{{ role.name }}</h5>
+											</div>
+											<div class="col right">
+												<h6 class="right-align">Experience Required: {{ role.experience }}+ Years</h6>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<table class = "striped bordered" >
+											<thead>
+												<tr>
+													<th> </th>
+													<th> </th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td> <strong>Qualifications</strong> </td>
+													<td>{{ role.qualification }}</td>
+												</tr>
+												<tr>
+													<td> <strong>Skills</strong> </td>
+													<td>{{ role.skills }}</td>
+												</tr>
+												<tr>
+													<td> <strong>Responsibilities</strong> </td>
+													<td>{{ role.responsibilities }}</td>
+												</tr>
+												<tr>
+													<td> <strong>Available Training</strong> </td>
+													<td>{{ role.training }}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+								</div>
+						</div>
+					{% endfor %}
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+	</main>
+<footer class="page-footer grey darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Jio Career</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright grey darken-3">
+      <div class="container">
+      <!-- Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a> -->
+        <div class="row">
+          <div class="col s6">
+          Jio Careers 2016-17 | Reliance Jio Infocomm Ltd. 
+          </div>
+          <div class="col s6">
+          All rights reserved | Privacy Policy | Legal Notice
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+	<!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/init.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+  </script>
+</body>
+</html>

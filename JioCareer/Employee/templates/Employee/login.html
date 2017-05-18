@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style type="text/css">
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  .input-field input[type=date]:focus + label,
+    .input-field input[type=text]:focus + label,
+    .input-field input[type=email]:focus + label,
+    .input-field input[type=password]:focus + label {
+      color: #e91e63;
+    }
+
+    .input-field input[type=date]:focus,
+    .input-field input[type=text]:focus,
+    .input-field input[type=email]:focus,
+    .input-field input[type=password]:focus {
+      border-bottom: 2px solid #e91e63;
+      box-shadow: none;
+    }
+  </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <nav class="white" role="navigation">
+  <!-- <img style="vertical-align:middle" src="jio.jpg" width=50px height=50px alt="" class="circle responsive-img"> -->
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo blue-text">Jio Career</a>
+      <ul class="right hide-on-med-and-down">
+        <!-- <li><a class="waves-effect waves-light btn" href='/career/explore'>Explore the roles</a></li> -->
+        <!-- <li><a class='dropdown-button btn' href='#' data-activates='dropdown1' data-beloworigin="true"><i class="large material-icons">perm_identity</i></a> -->
+
+          <!-- Dropdown Structure -->
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="/user/profile">My Profile</a></li>
+            <li class="divider"></li>
+            <li><a href="/user/logout">Sign Out</a></li>
+          </ul></li>
+      </ul>
+    </div>
+  </nav>
+  <main>
+  <br><br><br>
+    <div class="container" align=center >
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 20px 48px; border: 1px solid #EEE;">
+          <form class="col s12" method="post" action="/user/login" id="login-form">
+          {% csrf_token %}
+              <div class='row'>
+                <div class='col s12'>
+                </div>
+              </div>
+            
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type="text" name="username" id="id_username" />
+                <label for='id_username'>Enter your username</label>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type='password' name='password' id='password' />
+                <label for='password'>Enter your password</label>
+              </div>
+            </div>
+
+            <br />
+            <center>
+              <div class='row'  style="width: 100px;">
+                <button type='submit' name='btn_login' class='col s12 btn waves-effect indigo'>Login</button>
+              </div>
+            </center>
+          </form>
+        </div>
+      </div>
+
+  </main>
+
+  
+
+  <footer class="page-footer grey darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Jio Career</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright grey darken-3">
+      <div class="container">
+      <!-- Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a> -->
+        <div class="row">
+          <div class="col s6">
+          Jio Careers 2016-17 | Reliance Jio Infocomm Ltd. 
+          </div>
+          <div class="col s6">
+          All rights reserved | Privacy Policy | Legal Notice
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/init.js"></script>
+
+</body>
+</html>

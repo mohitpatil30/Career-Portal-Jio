@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Compare</title>
+<!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/login.css"> -->
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/> -->
+  <title>Starter Template - Materialize</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+/*table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width:90%; 
+}
+*/
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    width: 45%;
+    padding: 8px;
+}
+#h {
+    width: auto;
+    height: auto;
+    padding: 10px 40px;
+    background: #417690;
+    line-height: 40px;
+    color: #ffc;
+}
+
+</style>
+</head>
+<body>
+	<nav class="white" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" class="brand-logo blue-text hide-on-med-and-down">Jio Career</a>
+      <ul class="right">
+        <li><a class="waves-effect waves-light btn" href='/career/explore'>Explore Roles</a></li>
+        <a class='dropdown-button btn' data-activates='dropdown1' data-beloworigin="true"><i class="large material-icons">perm_identity</i></a>
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="/user/profile">Profile</a></li>
+          <li class="divider"></li>
+          <li><a href="/user/logout">Sign Out</a></li>
+        </ul>
+      </ul>  
+    </div>
+  </nav>
+
+	<main>
+		
+		<div class="container">
+			<br>
+			<table class = "striped bordered" >
+				<thead>
+					<tr>
+						<th id="h"></th>
+						<th id="h">
+						<div id="branding">
+							<h5 id="site_name">
+								{{ role1.name}}
+							</h5>
+						</div>
+					</th>
+					<th id="h">
+						<div id="branding">
+							<h5 id="site_name">
+								{{ role2.name }}
+							</h5>
+						</div>
+					</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<th ><strong> Experience: </strong></th>
+					<td>{{ role1.experience }}</td>
+					<td>{{ role2.experience }}</td>
+				</tr>
+				<tr>
+					<th><strong> Qualification:</strong></th>
+					<td>{{ role1.qualification }}</td>
+					<td>{{ role2.qualification }}</td>
+				</tr>
+
+				<tr>
+					<th ><strong> Skills:</strong></th>
+					<td>{{ role1.skills }}</td>
+					<td>{{ role2.skills }}</td>
+				</tr>
+
+				<tr>
+					<th ><strong> Responsibilities: </strong></th>
+					<td>{{ role1.responsibilities }}</td>
+					<td>{{ role2.responsibilities }}</td>
+
+				</tr>
+
+				<tr>
+					<th><strong> Available Training: </strong></th>
+					<td>{{ role1.training }}</td>
+					<td>{{ role2.training }}</td>
+				</tr>
+				</tbody>
+			</table>
+			<br>
+		</div>
+	</main>
+
+	<footer class="page-footer grey darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Jio Career</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright grey darken-3">
+      <div class="container">
+      <div class="row">
+      <div class="col s6">
+      Jio Careers 2016-17 | Reliance Jio Infocomm Ltd.
+      </div>
+      <div class="col s6">
+       All rights reserved | Privacy Policy | Legal Notice
+      </div>
+      </div>
+    </div>
+  </footer>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/init.js"></script>
+</body>
+</html>
