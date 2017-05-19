@@ -24,7 +24,6 @@ def employee_login(request):
 				print ("login success")
 				return redirect('/user/profile')
 			else:
-				print ("sahi daal bsdk")
 				return redirect('/user/login')
 		except Exception as error:
 			print (error)
